@@ -24,7 +24,7 @@ public class BinarySearchTree {
     }
 
     public Node remove(Node cur, int key){
-        if(root == null) throw new RuntimeException("Tree is empty");
+        if(cur == null) throw new RuntimeException("Tree is empty");
 
         else if(cur.key > key) cur.left = remove(cur.left, key);
         else if(cur.key < key) cur.right = remove(cur.right, key);
