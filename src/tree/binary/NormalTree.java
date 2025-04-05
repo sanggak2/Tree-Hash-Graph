@@ -20,13 +20,14 @@ public class NormalTree {
                     queue.offer(current.left);
                 else {
                     current.left = newNode;
-                    break;}
-
+                    break;
+                }
                 if(current.right != null)
                     queue.offer(current.right);
                 else {
                     current.right = newNode;
-                    break;}
+                    break;
+                }
             }
         }
     }
