@@ -1,5 +1,8 @@
 package tree.binarysearch;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 public class BinarySearchTree {
     Node root;
 
@@ -15,12 +18,17 @@ public class BinarySearchTree {
 
     private Node insertNode(Node cur, Node newNode) {
         if(cur == null) return newNode;
-        else if(cur.key > newNode.key)
+        else if(cur.key > newNode.key){
             cur.left = insertNode(cur.left, newNode);
-        else
+            cur.left.parent = cur;
+        }
+        else {
             cur.right = insertNode(cur.right, newNode);
+            cur.right.parent = cur;
+        }
 
-        return root;
+
+        return cur;
     }
 
     public Node remove(Node cur, int key){
@@ -50,6 +58,21 @@ public class BinarySearchTree {
 
     public int search(int key){
         return searchNode(root, key).key;
+    }
+
+    //순회
+    public void levelOrder(){
+        if(root == null) return;
+        Queue<Node> queue = new ArrayDeque<>();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            Node current = queue.poll();    //현 노드
+            //출력
+            System.out.print(current.key+" ");
+            //탐색
+            if(current.left != null) queue.offer(current.left);
+            if(current.right != null) queue.offer(current.right);
+        }
     }
 
     private Node searchNode(Node cur, int key) {
