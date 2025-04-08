@@ -12,6 +12,8 @@ public class BinarySearchTreeTest {
         test.add(3);
         test.add(12);
         test.add(11);
+        test.remove(test.root, 2);
+        System.out.println("test.searchNode(test.root, 12) = " + test.searchNode(test.root, 12));
         test.levelOrder();
     }
 }

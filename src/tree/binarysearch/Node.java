@@ -5,4 +5,9 @@ public class Node {
     Node parent;
     Node left;
     Node right;
+
+    @Override
+    public String toString() {
+        return key + "";
+    }
 }

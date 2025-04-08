@@ -6,6 +6,7 @@ import java.util.Queue;
 public class BinarySearchTree {
     Node root;
 
+    // 추가
     public void add(int key){
         Node newNode = new Node();
         newNode.key = key;
@@ -26,14 +27,12 @@ public class BinarySearchTree {
             cur.right = insertNode(cur.right, newNode);
             cur.right.parent = cur;
         }
-
-
         return cur;
     }
 
+    // 제거 1 :
     public Node remove(Node cur, int key){
         if(cur == null) throw new RuntimeException("Tree is empty");
-
         else if(cur.key > key) cur.left = remove(cur.left, key);
         else if(cur.key < key) cur.right = remove(cur.right, key);
         else{
@@ -56,6 +55,31 @@ public class BinarySearchTree {
         return cur;
     }
 
+    // 제거2 : Delete By Merging
+    public Node delete(Node cur, int key){
+        if(cur == null) throw new RuntimeException("Tree is empty");
+        else if(cur.key > key) cur.left = remove(cur.left, key);
+        else if(cur.key < key) cur.right = remove(cur.right, key);
+        else{
+            if(cur.left == null) {
+                Node parent = cur.parent;
+                cur = cur.right;
+                cur.parent = parent;
+            }
+            else{
+                Node parent = cur.parent;
+                Node right = cur.right;
+                Node leftLargest = getLargestNode(cur.left);
+                cur = cur.left;
+                cur.parent = parent;
+                leftLargest.right = right;
+                right.parent = leftLargest;
+            }
+        }
+        return cur;
+    }
+
+    // 검색
     public int search(int key){
         return searchNode(root, key).key;
     }
@@ -75,7 +99,7 @@ public class BinarySearchTree {
         }
     }
 
-    private Node searchNode(Node cur, int key) {
+    Node searchNode(Node cur, int key) {
         Node temp = cur;
         if(cur == null) throw new RuntimeException("값 없슈");
         else if (cur.key > key) temp = searchNode(cur.left, key);
