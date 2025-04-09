@@ -58,23 +58,25 @@ public class BinarySearchTree {
     // 제거2 : Delete By Merging
     public Node delete(Node cur, int key){
         if(cur == null) throw new RuntimeException("Tree is empty");
-        else if(cur.key > key) cur.left = remove(cur.left, key);
-        else if(cur.key < key) cur.right = remove(cur.right, key);
+        else if(cur.key > key) cur.left = delete(cur.left, key);
+        else if(cur.key < key) cur.right = delete(cur.right, key);
         else{
-            if(cur.left == null) {
-                Node parent = cur.parent;
-                cur = cur.right;
-                cur.parent = parent;
+            Node parent = cur.parent;
+            Node left = cur.left;
+            Node right = cur.right;
+            // cur 덮어쓰기
+            if(left == null) {
+                cur = right;
             }
             else{
-                Node parent = cur.parent;
-                Node right = cur.right;
-                Node leftLargest = getLargestNode(cur.left);
-                cur = cur.left;
-                cur.parent = parent;
+                cur = left;
+                Node leftLargest = getLargestNode(left);
                 leftLargest.right = right;
-                right.parent = leftLargest;
+                if(right != null) right.parent = leftLargest;
             }
+            // 부모 덮어쓰기
+            if(parent == null) root = cur;
+            if(cur != null) cur.parent = parent;
         }
         return cur;
     }
