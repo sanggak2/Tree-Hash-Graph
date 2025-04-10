@@ -101,6 +101,65 @@ public class BinarySearchTree {
         }
     }
 
+    // 회전
+    // 왼쪽
+//    Node x
+//       Node y
+//          Node z
+    public void leftRotate(Node x){
+        if(x == null) return;
+        Node xParent = x.parent;
+        if(x.right == null) return;
+        Node y = x.right;
+        Node yLeft = y.left;
+
+        // 1. y의 부모를 x의 부모로
+        y.parent = xParent;
+        // 2. x부모의 자식노드를 y로
+        if(xParent != null) {
+            if(xParent.left == x) xParent.left = y;
+            else xParent.right = y;
+        }
+        else root = y;
+        // 3. x부모를 y로
+        x.parent = y;
+        // 4. y왼쪽을 x로
+        y.left = x;
+        // 5. x오른쪽을 y의 왼쪽으로
+        x.right = yLeft;
+        // 6. y의 부모를 x로
+        if(yLeft != null) yLeft.parent = x;
+    }
+    // 오른쪽
+//          Node x
+//       Node y
+//    Node z
+    public void rightRotate(Node x){
+        if(x == null) return;
+        Node xParent = x.parent;
+        if(x.left == null) return;
+        Node y = x.left;
+        Node yRight = y.right;
+
+        // 1. y의 부모를 x의 부모로
+        y.parent = xParent;
+        // 2. x부모의 자식노드를 y로
+        if(xParent != null) {
+            if(xParent.left == x) xParent.left = y;
+            else xParent.right = y;
+        }
+        else root = y;
+        // 3. x부모를 y로
+        x.parent = y;
+        // 4. y오른쪽을 x로
+        y.right = x;
+        // 5. x왼쪽을 y의 오른쪽으로
+        x.left = yRight;
+        // 6. y의 부모를 x로
+        if(yRight != null) yRight.parent = x;
+    }
+
+    // 노드 찾기
     Node searchNode(Node cur, int key) {
         Node temp = cur;
         if(cur == null) throw new RuntimeException("값 없슈");

@@ -14,8 +14,9 @@ public class BinarySearchTreeTest {
         test.add(11);
 //        test.remove(test.root, 2);
 //        test.remove(test.root, 1);
-        test.delete(test.root, 2);
-        test.delete(test.root, 1);
+//        test.delete(test.root, 2);
+//        test.delete(test.root, 1);
+        test.leftRotate(test.root);
         System.out.println("test.searchNode(test.root, 12) = " + test.searchNode(test.root, 12));
         test.levelOrder();
     }
