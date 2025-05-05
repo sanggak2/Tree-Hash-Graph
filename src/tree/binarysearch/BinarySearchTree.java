@@ -30,7 +30,7 @@ public class BinarySearchTree {
         return cur;
     }
 
-    // 제거 1 :
+    // 제거 1 : DeleteByCopying
     public Node remove(Node cur, int key){
         if(cur == null) throw new RuntimeException("Tree is empty");
         else if(cur.key > key) cur.left = remove(cur.left, key);
@@ -125,9 +125,9 @@ public class BinarySearchTree {
         x.parent = y;
         // 4. y왼쪽을 x로
         y.left = x;
-        // 5. x오른쪽을 y의 왼쪽으로
+        // 5. x오른쪽을 y왼쪽으로
         x.right = yLeft;
-        // 6. y의 부모를 x로
+        // 6. y왼쪽의 부모를 x로
         if(yLeft != null) yLeft.parent = x;
     }
     // 오른쪽
@@ -153,9 +153,9 @@ public class BinarySearchTree {
         x.parent = y;
         // 4. y오른쪽을 x로
         y.right = x;
-        // 5. x왼쪽을 y의 오른쪽으로
+        // 5. x왼쪽을 y오른쪽으로
         x.left = yRight;
-        // 6. y의 부모를 x로
+        // 6. y오른쪽의 부모를 x로
         if(yRight != null) yRight.parent = x;
     }
 

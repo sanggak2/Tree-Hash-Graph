@@ -60,6 +60,7 @@ public class AVLTree extends BinarySearchTree {
             rightRotate(y);
             leftRotate(x);
         }
+        if(root == x) root = x.parent;
     }
 
     private int getBalance(Node x) {
