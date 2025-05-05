@@ -87,7 +87,7 @@ public class BinarySearchTree {
     }
 
     //순회
-    public void levelOrder(){
+    public void levelOrder(Node root){
         if(root == null) return;
         Queue<Node> queue = new ArrayDeque<>();
         queue.offer(root);
