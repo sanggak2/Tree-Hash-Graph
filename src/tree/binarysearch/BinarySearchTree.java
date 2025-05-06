@@ -78,7 +78,6 @@ public class BinarySearchTree {
             if(parent == null) root = cur;
             if(cur != null) cur.parent = parent;
         }
-        System.out.println("Bdelete : cur = " + cur);
         return cur;
     }
 
