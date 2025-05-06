@@ -18,6 +18,6 @@ public class BinarySearchTreeTest {
 //        test.delete(test.root, 1);
         test.leftRotate(test.root);
         System.out.println("test.searchNode(test.root, 12) = " + test.searchNode(test.root, 12));
-        test.levelOrder(test.root);
+        test.levelOrder();
     }
 }

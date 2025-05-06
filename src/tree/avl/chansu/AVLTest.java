@@ -16,9 +16,11 @@ public class AVLTest {
 
         tree.add(27);
         tree.add(28);
+        tree.levelOrder();
 
-        tree.delete(tree.root, 7);
+        System.out.println("\ndelete\n");
 
-        tree.levelOrder(tree.root);
+        tree.deleteAVL(tree.root, 7);
+        tree.levelOrder();
     }
 }

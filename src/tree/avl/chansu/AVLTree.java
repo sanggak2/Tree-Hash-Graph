@@ -16,21 +16,18 @@ public class AVLTree extends BinarySearchTree {
         rebalance(newNode);
     }
 
-    @Override
-    public Node delete(Node cur, int key){
-        cur = super.delete(cur, key);
-        System.out.println("cur = " + cur);
+    public void deleteAVL(Node cur, int key){
+        cur = searchNode(cur, key).parent;
+        super.delete(root, key);
+        levelOrder();
         rebalance(cur);
-
-        return cur;
     }
 
     private void rebalance(Node x) {
+        System.out.println("rebalance : x = " + x);
         if(x == null) return;
         if(Math.abs(getBalance(x)) > 1) rotate(x);
         setHeight(x);
-
-        if(x == root) return;
 
         rebalance(x.parent);
     }
@@ -56,7 +53,8 @@ public class AVLTree extends BinarySearchTree {
             System.out.println("LR : y "+y+" : x "+x);
             leftRotate(y);
             rightRotate(x);
-            levelOrder(root);
+            System.out.print("rotate : ");
+            levelOrder();
         }
         else if(!LR1 && LR2){
             System.out.println("RL");
@@ -74,6 +72,7 @@ public class AVLTree extends BinarySearchTree {
     private void setHeight(Node x) {
         int leftHeight = x.left == null ? -1 : x.left.height;
         int rightHeight = x.right == null ? -1 : x.right.height;
+        System.out.println("setHeight : x: "+x+", left: "+x.left+", right: "+x.right);
         x.height = Math.max(leftHeight, rightHeight) + 1;
     }
 

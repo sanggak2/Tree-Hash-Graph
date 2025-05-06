@@ -1,4 +1,4 @@
-package tree.avl;
+package tree.avl.codelatte;
 
 public class AVLTree {
     private Node root;

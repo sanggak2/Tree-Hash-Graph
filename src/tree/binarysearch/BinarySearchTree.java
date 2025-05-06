@@ -78,6 +78,7 @@ public class BinarySearchTree {
             if(parent == null) root = cur;
             if(cur != null) cur.parent = parent;
         }
+        System.out.println("Bdelete : cur = " + cur);
         return cur;
     }
 
@@ -87,7 +88,7 @@ public class BinarySearchTree {
     }
 
     //순회
-    public void levelOrder(Node root){
+    public void levelOrder(){
         if(root == null) return;
         Queue<Node> queue = new ArrayDeque<>();
         queue.offer(root);
@@ -99,6 +100,7 @@ public class BinarySearchTree {
             if(current.left != null) queue.offer(current.left);
             if(current.right != null) queue.offer(current.right);
         }
+        System.out.println();
     }
 
     // 회전
@@ -160,7 +162,7 @@ public class BinarySearchTree {
     }
 
     // 노드 찾기
-    Node searchNode(Node cur, int key) {
+    public Node searchNode(Node cur, int key) {
         Node temp = cur;
         if(cur == null) throw new RuntimeException("값 없슈");
         else if (cur.key > key) temp = searchNode(cur.left, key);

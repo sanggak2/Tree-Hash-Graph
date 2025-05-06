@@ -1,4 +1,4 @@
-package tree.avl;
+package tree.avl.codelatte;
 
 public class Node {
     int data;
