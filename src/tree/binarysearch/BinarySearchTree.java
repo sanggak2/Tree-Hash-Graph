@@ -177,13 +177,13 @@ public class BinarySearchTree {
     }
 
     //제일 작은 값 찾기
-    private Node getSmallestNode(Node cur){
+    public Node getSmallestNode(Node cur){
         if(cur.left == null) return cur;
         return getSmallestNode(cur.left);
     }
 
     //제일 큰 값 찾기
-    private Node getLargestNode(Node cur){
+    public Node getLargestNode(Node cur){
         if(cur.right == null) return cur;
         return getSmallestNode(cur.right);
     }

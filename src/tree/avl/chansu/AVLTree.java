@@ -16,8 +16,18 @@ public class AVLTree extends BinarySearchTree {
         rebalance(newNode);
     }
 
+    @Override
+    public Node delete(Node cur, int key) {
+        cur = super.remove(cur, key);
+        setHeight(cur);
+        return cur;
+    }
+
     public void deleteAVL(Node cur, int key){
-        cur = searchNode(cur, key).parent;
+        Node temp = searchNode(cur, key);
+        // leaf노드일땐 부모부터 rebalance하고 나머지는 후계자노드부터 rebalance
+        cur = temp.height == 0?
+                temp.parent : temp.left==null? getSmallestNode(temp.right) : getLargestNode(temp.left);
         super.delete(root, key);
         rebalance(cur);
     }

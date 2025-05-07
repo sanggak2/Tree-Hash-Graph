@@ -20,7 +20,9 @@ public class AVLTest {
 
         System.out.println("\ndelete\n");
 
-        tree.deleteAVL(tree.root, 7);
+//        tree.deleteAVL(tree.root, 7);
+//        tree.deleteAVL(tree.root, 5);
+        tree.deleteAVL(tree.root, 10);
         tree.levelOrder();
     }
 }
